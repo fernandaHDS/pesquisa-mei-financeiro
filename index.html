@@ -784,13 +784,6 @@
                     </div>
                 </div>
 
-                <div class="tips">
-                    <h4>💡 Dica para Aplicar:</h4>
-                    <p><strong>Presencial é melhor:</strong> Faça pessoalmente ou por videochamada quando possível. As respostas são mais honestas e você pode fazer perguntas de follow-up.</p>
-                    <p><strong>Meta:</strong> 30-50 respostas para ter insights confiáveis.</p>
-                    <p><strong>Incentivo:</strong> Ofereça o beta gratuito ou um pequeno desconto no futuro.</p>
-                </div>
-
                 <div class="submit-section">
                     <h3>Obrigado por participar! 🙏</h3>
                     <p>Suas respostas vão ajudar a criar uma ferramenta que realmente resolva os problemas dos MEIs brasileiros.</p>
@@ -857,9 +850,9 @@
             });
             */
             
-            ENVIAR PARA GOOGLE SHEETS (descomente se usar)
-            
-            fetch(https://https://script.google.com/macros/s/AKfycbwJkdd1JdsyZVyOZ--Hii6gsit01YU27iQl-LUwitoM5M0tokithq5noC3_S3IAJvWJdA/exec, {
+            // ENVIAR PARA GOOGLE SHEETS (descomente se usar)
+            /*
+            fetch(GOOGLE_SHEETS_URL, {
                 method: 'POST',
                 mode: 'no-cors',
                 headers: {
@@ -875,9 +868,9 @@
                 console.error('Erro:', error);
                 alert('❌ Erro no envio. Tente novamente.');
             });
+            */
             
-            
-            //* MODO DEMO (remova quando conectar com serviço real)
+            // MODO DEMO (remova quando conectar com serviço real)
             console.log('Respostas coletadas:', responses);
             alert('📊 MODO DEMO: Respostas coletadas! (Veja no console do navegador)\n\nPara usar de verdade, configure um dos serviços mencionados.');
             
@@ -901,7 +894,7 @@
                     alert('🧠 Insights iniciais:\n\n' + insights.join('\n'));
                 }, 1000);
             }
-        }); */
+        });
         
         // Salva progresso localmente (para não perder se fechar a página)
         const inputs = document.querySelectorAll('input, textarea, select');
