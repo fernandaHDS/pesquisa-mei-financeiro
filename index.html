@@ -835,27 +835,6 @@
                 console.error('Erro:', error);
                 alert('❌ Erro no envio. Tente novamente.');
             });
-            
-            // Análise automática básica
-            let insights = [];
-            
-            if (responses.q5 === 'nao_sei') {
-                insights.push('❌ Não sabe quanto lucrou - grande dor validada!');
-            }
-            
-            if (responses.q11 >= '4') {
-                insights.push('✅ Solução considerada muito útil!');
-            }
-            
-            if (responses.q9 === 'sempre' || responses.q9 === 'as_vezes') {
-                insights.push('✅ Já usa áudios no WhatsApp - boa aceitação esperada!');
-            }
-            
-            if (insights.length > 0) {
-                setTimeout(() => {
-                    alert('🧠 Insights iniciais:\n\n' + insights.join('\n'));
-                }, 1000);
-            }
         });
         
         // Salva progresso localmente (para não perder se fechar a página)
