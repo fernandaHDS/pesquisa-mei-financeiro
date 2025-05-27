@@ -794,15 +794,7 @@
     </div>
 
     <script>
-        // Configuração - ESCOLHA UMA OPÇÃO:
-        
-        // OPÇÃO 1: Formspree (Recomendado)
-        // Cadastre-se em formspree.io e substitua 'SEU_FORM_ID' pelo ID que eles derem
-        const FORMSPREE_URL = 'https://formspree.io/f/SEU_FORM_ID';
-        
-        // OPÇÃO 2: Google Sheets (Mais complexo, mas gratuito)
-        // Tutorial: https://github.com/jamiewilson/form-to-google-sheets
-        const GOOGLE_SHEETS_URL = 'SUA_URL_DO_GOOGLE_SHEETS_AQUI';
+        const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbwJkdd1JdsyZVyOZ--Hii6gsit01YU27iQl-LUwitoM5M0tokithq5noC3_S3IAJvWJdA/exec';
         
         document.getElementById('meiResearchForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -826,32 +818,7 @@
             // Adiciona timestamp
             responses.timestamp = new Date().toLocaleString('pt-BR');
             
-            // ENVIAR PARA FORMSPREE (descomente se usar)
-            /*
-            fetch(FORMSPREE_URL, {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(responses)
-            })
-            .then(response => {
-                if (response.ok) {
-                    alert('✅ Respostas enviadas com sucesso! Obrigado por participar da pesquisa.');
-                    this.reset();
-                } else {
-                    alert('❌ Erro no envio. Tente novamente.');
-                }
-            })
-            .catch(error => {
-                console.error('Erro:', error);
-                alert('❌ Erro no envio. Verifique sua conexão.');
-            });
-            */
-            
-            // ENVIAR PARA GOOGLE SHEETS (descomente se usar)
-            /*
+            // Enviar para Google Sheets
             fetch(GOOGLE_SHEETS_URL, {
                 method: 'POST',
                 mode: 'no-cors',
@@ -868,11 +835,6 @@
                 console.error('Erro:', error);
                 alert('❌ Erro no envio. Tente novamente.');
             });
-            */
-            
-            // MODO DEMO (remova quando conectar com serviço real)
-            console.log('Respostas coletadas:', responses);
-            alert('📊 MODO DEMO: Respostas coletadas! (Veja no console do navegador)\n\nPara usar de verdade, configure um dos serviços mencionados.');
             
             // Análise automática básica
             let insights = [];
