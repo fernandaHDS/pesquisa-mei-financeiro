@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pesquisa MEI - Gestão Financeira</title>
+    <title>Pesquisa Pequenos Empreendedores - Gestão Financeira</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         
@@ -401,7 +401,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🎯 Pesquisa: MEI e Gestão Financeira</h1>
+            <h1>🎯 Pesquisa: Pequenos Empreendedores e Gestão Financeira</h1>
             <p>Ajude-nos a entender como você gerencia as finanças do seu negócio</p>
             <p><small>⏱️ 5 minutos • Suas respostas são confidenciais</small></p>
         </div>
@@ -421,9 +421,31 @@
                             <label class="option"><input type="radio" name="q1" value="outros" id="q1_outros_radio"> Outros: <input type="text" name="q1_outros_text" id="q1_outros_text" placeholder="Especifique..." style="width: auto; display: inline-block; margin-left: 10px; padding: 8px 10px; font-size: 0.9em; border-radius: 8px;"></label>
                         </div>
                     </div>
-                    <div class="question"><h3><span class="question-number">2</span><span>Há quanto tempo você é MEI?</span></h3><div class="options"><label class="option"><input type="radio" name="q2" value="menos6meses"> Menos de 6 meses</label><label class="option"><input type="radio" name="q2" value="6meses1ano"> 6 meses a 1 ano</label><label class="option"><input type="radio" name="q2" value="1a3anos"> 1 a 3 anos</label><label class="option"><input type="radio" name="q2" value="mais3anos"> Mais de 3 anos</label></div></div>
-                    <div class="question"><h3><span class="question-number">3</span><span>Qual sua faixa de faturamento mensal?</span></h3><div class="options"><label class="option"><input type="radio" name="q3" value="ate2mil"> Até R$ 2.000</label><label class="option"><input type="radio" name="q3" value="2a5mil"> R$ 2.001 a R$ 5.000</label><label class="option"><input type="radio" name="q3" value="5a8mil"> R$ 5.001 a R$ 8.100 (limite MEI)</label></div></div>
+                    
+                    <div class="question">
+                        <h3><span class="question-number">2</span><span>Como você se define profissionalmente?</span></h3>
+                        <div class="options">
+                            <label class="option"><input type="radio" name="q2" value="mei"> Microempreendedor Individual (MEI)</label>
+                            <label class="option"><input type="radio" name="q2" value="profissional_liberal"> Profissional Liberal (médico, advogado, psicólogo, etc.)</label>
+                            <label class="option"><input type="radio" name="q2" value="autonomo"> Autônomo/Freelancer</label>
+                            <label class="option"><input type="radio" name="q2" value="pequeno_empresario"> Pequeno empresário (até 10 funcionários)</label>
+                            <label class="option"><input type="radio" name="q2" value="prestador_servicos"> Prestador de serviços independente</label>
+                            <label class="option"><input type="radio" name="q2" value="outros_prof" id="q2_outros_radio"> Outros: <input type="text" name="q2_outros_text" id="q2_outros_text" placeholder="Especifique..." style="width: auto; display: inline-block; margin-left: 10px; padding: 8px 10px; font-size: 0.9em; border-radius: 8px;"></label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <h3><span class="question-number">3</span><span>Qual sua faixa de faturamento mensal?</span></h3>
+                        <div class="options">
+                            <label class="option"><input type="radio" name="q3" value="ate2mil"> Até R$ 2.000</label>
+                            <label class="option"><input type="radio" name="q3" value="2a5mil"> R$ 2.001 a R$ 5.000</label>
+                            <label class="option"><input type="radio" name="q3" value="5a10mil"> R$ 5.001 a R$ 10.000</label>
+                            <label class="option"><input type="radio" name="q3" value="10a20mil"> R$ 10.001 a R$ 20.000</label>
+                            <label class="option"><input type="radio" name="q3" value="mais20mil"> Mais de R$ 20.000</label>
+                        </div>
+                    </div>
                 </div>
+                
                 <div class="section priority-high">
                     <h2>😰 Controle Financeiro Atual</h2>
                     <div class="question"><h3><span class="question-number">4</span><span>Como você controla suas finanças hoje? (Marque todas que se aplicam)</span></h3><div class="options"><label class="option"><input type="checkbox" name="q4" value="caderno"> Caderno/papel</label><label class="option"><input type="checkbox" name="q4" value="planilha"> Planilha Excel/Google Sheets</label><label class="option"><input type="checkbox" name="q4" value="app_bancario"> App do banco</label><label class="option"><input type="checkbox" name="q4" value="sistema_gestao"> Sistema de gestão online</label><label class="option"><input type="checkbox" name="q4" value="memoria"> Só na memória/cabeça</label><label class="option"><input type="checkbox" name="q4" value="nao_controlo"> Não controlo (seja honesto!)</label></div></div>
@@ -461,7 +483,7 @@
 
                 <div class="submit-section">
                     <h3>Obrigado por participar! 🙏</h3>
-                    <p>Suas respostas vão ajudar a criar uma ferramenta que realmente resolva os problemas dos MEIs brasileiros.</p>
+                    <p>Suas respostas vão ajudar a criar uma ferramenta que realmente resolva os problemas dos pequenos empreendedores brasileiros.</p>
                     <button type="submit" class="submit-btn" id="submitButton">Enviar Respostas</button>
                 </div>
             </form>
@@ -476,7 +498,7 @@
     </div>
 
     <script>
-        const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycby1aQ77lFVId8wcaLrnaABhWzWYtWkFJosTBfQNZRwsdcv1tFc_z5fLqCfxkR4usZDlaw/exec'; // <-- MUITO IMPORTANTE: ATUALIZE ESTA LINHA!!!
+        const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycby1aQ77lFVId8wcaLrnaABhWzWYtWkFJosTBfQNZRwsdcv1tFc_z5fLqCfxkR4usZDlaw/exec';
         const researchForm = document.getElementById('meiResearchForm');
         const submitButton = document.getElementById('submitButton');
         
@@ -506,15 +528,26 @@
             const formData = new FormData(this);
             const responses = {};
             
+            // Processar q1 com campo "outros"
             const q1OutrosRadio = document.getElementById('q1_outros_radio');
             const q1OutrosText = document.getElementById('q1_outros_text').value.trim();
+            
+            // Processar q2 com campo "outros" 
+            const q2OutrosRadio = document.getElementById('q2_outros_radio');
+            const q2OutrosText = document.getElementById('q2_outros_text').value.trim();
 
             for (let [key, value] of formData.entries()) {
                 let processedValue = value;
+                
                 if (key === 'q1' && value === 'outros' && q1OutrosRadio.checked) {
                     processedValue = q1OutrosText ? `Outros: ${q1OutrosText}` : 'Outros (não especificado)';
                 }
                 if (key === 'q1_outros_text') continue;
+                
+                if (key === 'q2' && value === 'outros_prof' && q2OutrosRadio.checked) {
+                    processedValue = q2OutrosText ? `Outros: ${q2OutrosText}` : 'Outros (não especificado)';
+                }
+                if (key === 'q2_outros_text') continue;
 
                 if (responses[key]) {
                     if (Array.isArray(responses[key])) {
@@ -531,43 +564,27 @@
             
             fetch(GOOGLE_SHEETS_URL, {
                 method: 'POST',
-                body: JSON.stringify(responses) 
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(responses)
             })
-            .then(response => {
-                if (!response.ok) {
-                    return response.text().then(text => {
-                         throw new Error(`Erro do Servidor: ${response.status} ${response.statusText} - ${text || 'Sem detalhes'}`);
-                    });
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (data && data.result === 'success') {
-                    showModal('✅ Respostas enviadas com sucesso! Obrigado por participar da pesquisa.');
-                    this.reset();
-                    const formElements = Array.from(this.elements);
-                    formElements.forEach(input => {
-                        if (input.name) {
-                             const storageKeyBase = 'pesquisa_mei_' + input.name;
-                             localStorage.removeItem(storageKeyBase);
-                             localStorage.removeItem(storageKeyBase + '_' + input.value);
-                        }
-                    });
-
-                } else {
-                    console.error('Erro retornado pelo script:', data ? data.error : 'Resposta inválida do servidor.');
-                    showModal(`❌ Erro no envio: ${data && data.error ? data.error : 'Resposta inválida do servidor.'}. Verifique o console.`, false);
-                }
+            .then(() => {
+                showModal('✅ Respostas enviadas com sucesso! Obrigado por participar da pesquisa.');
+                this.reset();
+                const formElements = Array.from(this.elements);
+                formElements.forEach(input => {
+                    if (input.name) {
+                         const storageKeyBase = 'pesquisa_mei_' + input.name;
+                         localStorage.removeItem(storageKeyBase);
+                         localStorage.removeItem(storageKeyBase + '_' + input.value);
+                    }
+                });
             })
             .catch(error => {
                 console.error('Erro no fetch:', error);
-                let userMessage = `❌ Erro crítico no envio: ${error.message}.`;
-                if (error.message && error.message.includes('401')) {
-                   userMessage += " O erro 401 (Unauthorized) geralmente significa que a implantação do Apps Script não está configurada para 'Qualquer pessoa'. Por favor, verifique novamente a implantação.";
-                } else {
-                   userMessage += " Verifique o console para detalhes e se o Google Apps Script está configurado corretamente (CORS, implantação).";
-                }
-                showModal(userMessage, false);
+                showModal('❌ Erro no envio. Tente novamente.', false);
             })
             .finally(() => {
                 submitButton.disabled = false;
