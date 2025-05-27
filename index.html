@@ -19,11 +19,12 @@
             min-height: 100vh;
             padding: 20px;
             font-weight: 400;
+            color: #334155; /* Default text color */
         }
 
         .container {
             max-width: 800px;
-            margin: 0 auto;
+            margin: 20px auto; /* Added top/bottom margin */
             background: white;
             border-radius: 24px;
             box-shadow: 0 32px 64px rgba(0,0,0,0.12);
@@ -56,26 +57,41 @@
         }
 
         .header h1 {
-            font-size: 2.75em;
+            font-size: 2.5em; /* Slightly reduced for responsiveness */
             margin-bottom: 12px;
             font-weight: 700;
             letter-spacing: -0.025em;
         }
 
         .header p {
-            font-size: 1.125em;
+            font-size: 1.1em; /* Slightly reduced */
             opacity: 0.95;
             font-weight: 400;
             line-height: 1.6;
         }
-
-        .form-content {
-            padding: 48px;
+        .header p small {
+            font-size: 0.9em;
         }
 
+        .form-content {
+            padding: 24px; /* Reduced padding for smaller screens */
+        }
+        @media (min-width: 600px) {
+            .form-content {
+                padding: 48px;
+            }
+            .header h1 {
+                font-size: 2.75em;
+            }
+             .header p {
+                font-size: 1.125em;
+            }
+        }
+
+
         .section {
-            margin: 48px 0;
-            padding: 32px;
+            margin: 32px 0; /* Reduced margin */
+            padding: 24px; /* Reduced padding */
             background: #f8fafc;
             border-radius: 20px;
             border-left: 4px solid #4f46e5;
@@ -84,15 +100,15 @@
 
         .section h2 {
             color: #1e293b;
-            margin-bottom: 24px;
-            font-size: 1.75em;
+            margin-bottom: 20px; /* Reduced margin */
+            font-size: 1.6em; /* Slightly reduced */
             font-weight: 600;
             letter-spacing: -0.025em;
         }
 
         .question {
-            margin: 32px 0;
-            padding: 24px;
+            margin: 24px 0; /* Reduced margin */
+            padding: 20px; /* Reduced padding */
             background: white;
             border-radius: 16px;
             box-shadow: 0 2px 12px rgba(0,0,0,0.06);
@@ -101,16 +117,18 @@
 
         .question h3 {
             color: #334155;
-            margin-bottom: 18px;
-            font-size: 1.25em;
+            margin-bottom: 16px; /* Reduced margin */
+            font-size: 1.15em; /* Slightly reduced */
             line-height: 1.5;
             font-weight: 500;
+            display: flex; /* For aligning number and text */
+            align-items: flex-start; /* Align items at the start */
         }
 
         .question-number {
             background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
             color: white;
-            width: 28px;
+            min-width: 28px; /* Use min-width */
             height: 28px;
             border-radius: 50%;
             display: inline-flex;
@@ -120,25 +138,31 @@
             font-weight: 600;
             margin-right: 12px;
             box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3);
+            flex-shrink: 0; /* Prevent shrinking */
         }
+        .question h3 span:not(.question-number) { /* Target the text part */
+            flex-grow: 1;
+        }
+
 
         .options {
             display: flex;
             flex-direction: column;
             gap: 12px;
-            margin-top: 18px;
+            margin-top: 16px; /* Reduced margin */
         }
 
         .option {
             display: flex;
             align-items: center;
-            padding: 16px 20px;
+            padding: 14px 18px; /* Reduced padding */
             background: #f8fafc;
             border-radius: 12px;
             cursor: pointer;
             transition: all 0.2s ease;
             border: 2px solid transparent;
             font-weight: 400;
+            font-size: 0.95em; /* Slightly reduced */
         }
 
         .option:hover {
@@ -150,57 +174,76 @@
 
         .option input[type="radio"], .option input[type="checkbox"] {
             margin-right: 14px;
-            transform: scale(1.2);
+            transform: scale(1.1); /* Slightly reduced */
             accent-color: #4f46e5;
+            flex-shrink: 0;
         }
+        .option input[type="text"] {
+            flex-grow: 1; /* Allow text input to grow */
+            min-width: 100px; /* Minimum width for text input */
+        }
+
 
         .scale-options {
             display: flex;
-            justify-content: space-between;
+            justify-content: space-around; /* Better spacing */
             align-items: center;
-            margin: 24px 0;
-            padding: 24px;
+            margin: 20px 0; /* Reduced margin */
+            padding: 20px; /* Reduced padding */
             background: #f8fafc;
             border-radius: 16px;
             border: 1px solid #e2e8f0;
+            flex-wrap: wrap; /* Allow wrapping on small screens */
         }
 
         .scale-item {
             text-align: center;
             flex: 1;
+            min-width: 40px; /* Ensure items don't get too small */
+            padding: 5px;
         }
 
         .scale-item input[type="radio"] {
-            margin-bottom: 10px;
-            transform: scale(1.4);
+            margin-bottom: 8px; /* Reduced margin */
+            transform: scale(1.3); /* Slightly reduced */
             accent-color: #4f46e5;
         }
 
         .scale-item label {
-            font-size: 0.875em;
+            font-size: 0.85em; /* Slightly reduced */
             color: #64748b;
             font-weight: 500;
+            display: block; /* Make label block for better tap area */
         }
 
         .scale-labels {
             display: flex;
             justify-content: space-between;
-            margin-top: 12px;
-            font-size: 0.875em;
+            margin-top: 10px; /* Reduced margin */
+            font-size: 0.85em; /* Slightly reduced */
             color: #64748b;
             font-weight: 500;
+            padding: 0 5px; /* Add some padding */
+        }
+         .scale-labels span:first-child {
+            text-align: left;
+        }
+        .scale-labels span:last-child {
+            text-align: right;
         }
 
-        textarea, input[type="text"], input[type="number"] {
+        textarea, input[type="text"], input[type="number"], input[type="tel"], input[type="email"] { /* Added tel and email */
             width: 100%;
-            padding: 16px 20px;
+            padding: 14px 18px; /* Reduced padding */
             border: 2px solid #e2e8f0;
             border-radius: 12px;
-            font-size: 1em;
+            font-size: 0.95em; /* Slightly reduced */
             font-family: inherit;
             transition: all 0.2s ease;
-            margin-top: 12px;
+            margin-top: 10px; /* Reduced margin */
             font-weight: 400;
+            background-color: #fff; /* Ensure background is white */
+            color: #334155; /* Ensure text color is visible */
         }
 
         textarea:focus, input:focus {
@@ -210,28 +253,20 @@
         }
 
         textarea {
-            height: 120px;
+            min-height: 100px; /* Use min-height */
             resize: vertical;
         }
 
-        .priority-high {
-            border-left-color: #dc2626;
-        }
-
-        .priority-medium {
-            border-left-color: #d97706;
-        }
-
-        .priority-low {
-            border-left-color: #059669;
-        }
+        .priority-high { border-left-color: #dc2626; }
+        .priority-medium { border-left-color: #d97706; }
+        .priority-low { border-left-color: #059669; }
 
         .insight-box {
             background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
             color: white;
-            padding: 28px;
+            padding: 24px; /* Reduced padding */
             border-radius: 16px;
-            margin: 24px 0;
+            margin: 20px 0; /* Reduced margin */
             position: relative;
             overflow: hidden;
         }
@@ -241,18 +276,19 @@
             position: absolute;
             top: 0;
             right: 0;
-            width: 100px;
-            height: 100px;
+            width: 80px; /* Reduced size */
+            height: 80px; /* Reduced size */
             background: rgba(255,255,255,0.1);
             border-radius: 50%;
-            transform: translate(30px, -30px);
+            transform: translate(25px, -25px); /* Adjusted position */
         }
 
         .insight-box h4 {
-            margin-bottom: 12px;
+            margin-bottom: 10px; /* Reduced margin */
             font-weight: 600;
             position: relative;
             z-index: 1;
+            font-size: 1.1em;
         }
 
         .insight-box p {
@@ -260,33 +296,47 @@
             position: relative;
             z-index: 1;
             font-weight: 400;
+            font-size: 0.95em;
         }
 
         .submit-section {
             text-align: center;
-            margin: 48px 0;
-            padding: 40px;
+            margin: 32px 0 0; /* Reduced top margin, no bottom margin */
+            padding: 32px; /* Reduced padding */
             background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-            border-radius: 20px;
+            border-radius: 0 0 20px 20px; /* Round bottom corners only if it's the last element */
             color: white;
         }
+         .container > .submit-section { /* If submit-section is direct child of container */
+             border-radius: 0 0 20px 20px;
+         }
+         .form-content > .submit-section { /* If submit-section is inside form-content */
+             border-radius: 20px; /* Keep it fully rounded if nested */
+             margin-bottom: 0;
+         }
+
 
         .submit-section h3 {
             font-weight: 600;
             margin-bottom: 8px;
+            font-size: 1.25em;
+        }
+        .submit-section p {
+            font-size: 0.95em;
+            margin-bottom: 16px;
         }
 
         .submit-btn {
             background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
             color: white;
-            padding: 16px 48px;
+            padding: 14px 40px; /* Reduced padding */
             border: none;
             border-radius: 12px;
-            font-size: 1.125em;
+            font-size: 1.05em; /* Slightly reduced */
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s ease;
-            margin-top: 16px;
+            /* margin-top: 16px; Removed, p has margin-bottom */
             box-shadow: 0 4px 16px rgba(79, 70, 229, 0.3);
         }
 
@@ -294,20 +344,59 @@
             transform: translateY(-2px);
             box-shadow: 0 8px 24px rgba(79, 70, 229, 0.4);
         }
+        .submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
 
-        .tips {
-            background: #fef3c7;
-            border: 1px solid #f59e0b;
-            padding: 20px;
+
+        /* Modal Styles */
+        .feedback-modal {
+            display: none;
+            position: fixed;
+            z-index: 1001; /* Above other content */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5); /* Dim background */
+            justify-content: center;
+            align-items: center;
+        }
+        .feedback-modal-content {
+            background-color: #fff;
+            margin: auto;
+            padding: 30px;
+            border: 1px solid #ddd;
             border-radius: 12px;
-            margin: 20px 0;
-            color: #92400e;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+            width: 90%;
+            max-width: 450px;
+            text-align: center;
+        }
+        .feedback-modal-content p {
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            line-height: 1.5;
+            color: #334155;
+        }
+        .feedback-modal-content button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            background-color: #4f46e5;
+            color: white;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 1em;
+            transition: background-color 0.2s ease;
+        }
+        .feedback-modal-content button:hover {
+            background-color: #4338ca;
         }
 
-        .tips h4 {
-            margin-bottom: 12px;
-            font-weight: 600;
-        }
     </style>
 </head>
 <body>
@@ -321,12 +410,11 @@
         <div class="form-content">
             <form id="meiResearchForm">
                 
-                <!-- SEÇÃO 1: PERFIL DO MEI -->
                 <div class="section priority-low">
                     <h2>👤 Sobre Você e Seu Negócio</h2>
                     
                     <div class="question">
-                        <h3><span class="question-number">1</span>Qual seu ramo de atividade?</h3>
+                        <h3><span class="question-number">1</span><span>Qual seu ramo de atividade?</span></h3>
                         <div class="options">
                             <label class="option">
                                 <input type="radio" name="q1" value="servicos">
@@ -344,222 +432,110 @@
                                 <input type="radio" name="q1" value="digital">
                                 Digital (design, marketing, desenvolvimento)
                             </label>
-                            <label class="option">
-                                <input type="radio" name="q1" value="outros">
-                                Outros: <input type="text" placeholder="Especifique..." style="width: 200px; display: inline; margin-left: 10px;">
+                            <label class="option"> <input type="radio" name="q1" value="outros" id="q1_outros_radio">
+                                Outros: <input type="text" name="q1_outros_text" id="q1_outros_text" placeholder="Especifique..." style="width: auto; display: inline-block; margin-left: 10px; padding: 8px 10px; font-size: 0.9em; border-radius: 8px;">
                             </label>
                         </div>
                     </div>
 
                     <div class="question">
-                        <h3><span class="question-number">2</span>Há quanto tempo você é MEI?</h3>
+                        <h3><span class="question-number">2</span><span>Há quanto tempo você é MEI?</span></h3>
                         <div class="options">
-                            <label class="option">
-                                <input type="radio" name="q2" value="menos6meses">
-                                Menos de 6 meses
-                            </label>
-                            <label class="option">
-                                <input type="radio" name="q2" value="6meses1ano">
-                                6 meses a 1 ano
-                            </label>
-                            <label class="option">
-                                <input type="radio" name="q2" value="1a3anos">
-                                1 a 3 anos
-                            </label>
-                            <label class="option">
-                                <input type="radio" name="q2" value="mais3anos">
-                                Mais de 3 anos
-                            </label>
+                            <label class="option"><input type="radio" name="q2" value="menos6meses"> Menos de 6 meses</label>
+                            <label class="option"><input type="radio" name="q2" value="6meses1ano"> 6 meses a 1 ano</label>
+                            <label class="option"><input type="radio" name="q2" value="1a3anos"> 1 a 3 anos</label>
+                            <label class="option"><input type="radio" name="q2" value="mais3anos"> Mais de 3 anos</label>
                         </div>
                     </div>
 
                     <div class="question">
-                        <h3><span class="question-number">3</span>Qual sua faixa de faturamento mensal?</h3>
+                        <h3><span class="question-number">3</span><span>Qual sua faixa de faturamento mensal?</span></h3>
                         <div class="options">
-                            <label class="option">
-                                <input type="radio" name="q3" value="ate2mil">
-                                Até R$ 2.000
-                            </label>
-                            <label class="option">
-                                <input type="radio" name="q3" value="2a5mil">
-                                R$ 2.001 a R$ 5.000
-                            </label>
-                            <label class="option">
-                                <input type="radio" name="q3" value="5a8mil">
-                                R$ 5.001 a R$ 8.100 (limite MEI)
-                            </label>
+                            <label class="option"><input type="radio" name="q3" value="ate2mil"> Até R$ 2.000</label>
+                            <label class="option"><input type="radio" name="q3" value="2a5mil"> R$ 2.001 a R$ 5.000</label>
+                            <label class="option"><input type="radio" name="q3" value="5a8mil"> R$ 5.001 a R$ 8.100 (limite MEI)</label>
                         </div>
                     </div>
                 </div>
 
-                <!-- SEÇÃO 2: DOR ATUAL -->
                 <div class="section priority-high">
                     <h2>😰 Controle Financeiro Atual</h2>
                     
                     <div class="question">
-                        <h3><span class="question-number">4</span>Como você controla suas finanças hoje?</h3>
+                        <h3><span class="question-number">4</span><span>Como você controla suas finanças hoje? (Marque todas que se aplicam)</span></h3>
                         <div class="options">
-                            <label class="option">
-                                <input type="checkbox" name="q4" value="caderno">
-                                Caderno/papel
-                            </label>
-                            <label class="option">
-                                <input type="checkbox" name="q4" value="planilha">
-                                Planilha Excel/Google Sheets
-                            </label>
-                            <label class="option">
-                                <input type="checkbox" name="q4" value="app_bancario">
-                                App do banco
-                            </label>
-                            <label class="option">
-                                <input type="checkbox" name="q4" value="sistema_gestao">
-                                Sistema de gestão online (software pago para empresas)
-                            </label>
-                            <label class="option">
-                                <input type="checkbox" name="q4" value="memoria">
-                                Só na memória/cabeça
-                            </label>
-                            <label class="option">
-                                <input type="checkbox" name="q4" value="nao_controlo">
-                                Não controlo (seja honesto!)
-                            </label>
+                            <label class="option"><input type="checkbox" name="q4" value="caderno"> Caderno/papel</label>
+                            <label class="option"><input type="checkbox" name="q4" value="planilha"> Planilha Excel/Google Sheets</label>
+                            <label class="option"><input type="checkbox" name="q4" value="app_bancario"> App do banco</label>
+                            <label class="option"><input type="checkbox" name="q4" value="sistema_gestao"> Sistema de gestão online</label>
+                            <label class="option"><input type="checkbox" name="q4" value="memoria"> Só na memória/cabeça</label>
+                            <label class="option"><input type="checkbox" name="q4" value="nao_controlo"> Não controlo (seja honesto!)</label>
                         </div>
                     </div>
 
                     <div class="question">
-                        <h3><span class="question-number">5</span>Você sabe exatamente quanto lucrou no mês passado?</h3>
+                        <h3><span class="question-number">5</span><span>Você sabe exatamente quanto lucrou no mês passado?</span></h3>
                         <div class="options">
-                            <label class="option">
-                                <input type="radio" name="q5" value="sim_exato">
-                                Sim, sei o valor exato
-                            </label>
-                            <label class="option">
-                                <input type="radio" name="q5" value="mais_ou_menos">
-                                Mais ou menos, uma estimativa
-                            </label>
-                            <label class="option">
-                                <input type="radio" name="q5" value="nao_sei">
-                                Não, não sei
-                            </label>
+                            <label class="option"><input type="radio" name="q5" value="sim_exato"> Sim, sei o valor exato</label>
+                            <label class="option"><input type="radio" name="q5" value="mais_ou_menos"> Mais ou menos, uma estimativa</label>
+                            <label class="option"><input type="radio" name="q5" value="nao_sei"> Não, não sei</label>
                         </div>
                     </div>
 
                     <div class="question">
-                        <h3><span class="question-number">6</span>Com que frequência você atualiza seu controle financeiro?</h3>
+                        <h3><span class="question-number">6</span><span>Com que frequência você atualiza seu controle financeiro?</span></h3>
                         <div class="options">
-                            <label class="option">
-                                <input type="radio" name="q6" value="diario">
-                                Todo dia
-                            </label>
-                            <label class="option">
-                                <input type="radio" name="q6" value="semanal">
-                                Uma vez por semana
-                            </label>
-                            <label class="option">
-                                <input type="radio" name="q6" value="mensal">
-                                Uma vez por mês
-                            </label>
-                            <label class="option">
-                                <input type="radio" name="q6" value="quando_lembro">
-                                Quando lembro
-                            </label>
-                            <label class="option">
-                                <input type="radio" name="q6" value="nunca">
-                                Quase nunca
-                            </label>
+                            <label class="option"><input type="radio" name="q6" value="diario"> Todo dia</label>
+                            <label class="option"><input type="radio" name="q6" value="semanal"> Uma vez por semana</label>
+                            <label class="option"><input type="radio" name="q6" value="mensal"> Uma vez por mês</label>
+                            <label class="option"><input type="radio" name="q6" value="quando_lembro"> Quando lembro</label>
+                            <label class="option"><input type="radio" name="q6" value="nunca"> Quase nunca</label>
                         </div>
                     </div>
 
                     <div class="question">
-                        <h3><span class="question-number">7</span>Qual sua MAIOR dificuldade com controle financeiro?</h3>
+                        <h3><span class="question-number">7</span><span>Qual sua MAIOR dificuldade com controle financeiro?</span></h3>
                         <textarea name="q7" placeholder="Seja específico: falta de tempo, não sei como fazer, esqueço de anotar, etc."></textarea>
                     </div>
                 </div>
 
-                <!-- SEÇÃO 3: COMPORTAMENTO MOBILE -->
                 <div class="section priority-medium">
                     <h2>📱 Seu Uso de Tecnologia</h2>
                     
                     <div class="question">
-                        <h3><span class="question-number">8</span>Com que frequência você usa WhatsApp para trabalho?</h3>
+                        <h3><span class="question-number">8</span><span>Com que frequência você usa WhatsApp para trabalho?</span></h3>
                         <div class="scale-options">
-                            <div class="scale-item">
-                                <input type="radio" name="q8" value="1" id="q8_1">
-                                <label for="q8_1">1</label>
-                            </div>
-                            <div class="scale-item">
-                                <input type="radio" name="q8" value="2" id="q8_2">
-                                <label for="q8_2">2</label>
-                            </div>
-                            <div class="scale-item">
-                                <input type="radio" name="q8" value="3" id="q8_3">
-                                <label for="q8_3">3</label>
-                            </div>
-                            <div class="scale-item">
-                                <input type="radio" name="q8" value="4" id="q8_4">
-                                <label for="q8_4">4</label>
-                            </div>
-                            <div class="scale-item">
-                                <input type="radio" name="q8" value="5" id="q8_5">
-                                <label for="q8_5">5</label>
-                            </div>
+                            <div class="scale-item"><input type="radio" name="q8" value="1" id="q8_1"><label for="q8_1">1</label></div>
+                            <div class="scale-item"><input type="radio" name="q8" value="2" id="q8_2"><label for="q8_2">2</label></div>
+                            <div class="scale-item"><input type="radio" name="q8" value="3" id="q8_3"><label for="q8_3">3</label></div>
+                            <div class="scale-item"><input type="radio" name="q8" value="4" id="q8_4"><label for="q8_4">4</label></div>
+                            <div class="scale-item"><input type="radio" name="q8" value="5" id="q8_5"><label for="q8_5">5</label></div>
                         </div>
-                        <div class="scale-labels">
-                            <span>Nunca</span>
-                            <span>Todo dia</span>
+                        <div class="scale-labels"><span>Nunca</span><span>Todo dia</span></div>
+                    </div>
+
+                    <div class="question">
+                        <h3><span class="question-number">9</span><span>Você costuma mandar áudios no WhatsApp?</span></h3>
+                        <div class="options">
+                            <label class="option"><input type="radio" name="q9" value="sempre"> Sempre, prefiro áudio a texto</label>
+                            <label class="option"><input type="radio" name="q9" value="as_vezes"> Às vezes, depende da situação</label>
+                            <label class="option"><input type="radio" name="q9" value="raramente"> Raramente, prefiro digitar</label>
+                            <label class="option"><input type="radio" name="q9" value="nunca"> Nunca mando áudios</label>
                         </div>
                     </div>
 
                     <div class="question">
-                        <h3><span class="question-number">9</span>Você costuma mandar áudios no WhatsApp?</h3>
+                        <h3><span class="question-number">10</span><span>Quando você mais precisa anotar informações financeiras? (Marque todas que se aplicam)</span></h3>
                         <div class="options">
-                            <label class="option">
-                                <input type="radio" name="q9" value="sempre">
-                                Sempre, prefiro áudio a texto
-                            </label>
-                            <label class="option">
-                                <input type="radio" name="q9" value="as_vezes">
-                                Às vezes, depende da situação
-                            </label>
-                            <label class="option">
-                                <input type="radio" name="q9" value="raramente">
-                                Raramente, prefiro digitar
-                            </label>
-                            <label class="option">
-                                <input type="radio" name="q9" value="nunca">
-                                Nunca mando áudios
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="question">
-                        <h3><span class="question-number">10</span>Quando você mais precisa anotar informações financeiras?</h3>
-                        <div class="options">
-                            <label class="option">
-                                <input type="checkbox" name="q10" value="atendendo_cliente">
-                                Enquanto atendo cliente
-                            </label>
-                            <label class="option">
-                                <input type="checkbox" name="q10" value="no_transito">
-                                No trânsito/dirigindo
-                            </label>
-                            <label class="option">
-                                <input type="checkbox" name="q10" value="fora_escritorio">
-                                Fora do escritório/casa
-                            </label>
-                            <label class="option">
-                                <input type="checkbox" name="q10" value="final_do_dia">
-                                No final do dia
-                            </label>
-                            <label class="option">
-                                <input type="checkbox" name="q10" value="momento_compra">
-                                No momento da compra/venda
-                            </label>
+                            <label class="option"><input type="checkbox" name="q10" value="atendendo_cliente"> Enquanto atendo cliente</label>
+                            <label class="option"><input type="checkbox" name="q10" value="no_transito"> No trânsito/dirigindo</label>
+                            <label class="option"><input type="checkbox" name="q10" value="fora_escritorio"> Fora do escritório/casa</label>
+                            <label class="option"><input type="checkbox" name="q10" value="final_do_dia"> No final do dia</label>
+                            <label class="option"><input type="checkbox" name="q10" value="momento_compra"> No momento da compra/venda</label>
                         </div>
                     </div>
                 </div>
 
-                <!-- SEÇÃO 4: VALIDAÇÃO DA SOLUÇÃO -->
                 <div class="section priority-high">
                     <h2>💡 Testando a Ideia</h2>
                     
@@ -569,217 +545,104 @@
                     </div>
 
                     <div class="question">
-                        <h3><span class="question-number">11</span>O quanto essa solução seria útil para você?</h3>
+                        <h3><span class="question-number">11</span><span>O quanto essa solução seria útil para você?</span></h3>
                         <div class="scale-options">
-                            <div class="scale-item">
-                                <input type="radio" name="q11" value="1" id="q11_1">
-                                <label for="q11_1">1</label>
-                            </div>
-                            <div class="scale-item">
-                                <input type="radio" name="q11" value="2" id="q11_2">
-                                <label for="q11_2">2</label>
-                            </div>
-                            <div class="scale-item">
-                                <input type="radio" name="q11" value="3" id="q11_3">
-                                <label for="q11_3">3</label>
-                            </div>
-                            <div class="scale-item">
-                                <input type="radio" name="q11" value="4" id="q11_4">
-                                <label for="q11_4">4</label>
-                            </div>
-                            <div class="scale-item">
-                                <input type="radio" name="q11" value="5" id="q11_5">
-                                <label for="q11_5">5</label>
-                            </div>
+                            <div class="scale-item"><input type="radio" name="q11" value="1" id="q11_1"><label for="q11_1">1</label></div>
+                            <div class="scale-item"><input type="radio" name="q11" value="2" id="q11_2"><label for="q11_2">2</label></div>
+                            <div class="scale-item"><input type="radio" name="q11" value="3" id="q11_3"><label for="q11_3">3</label></div>
+                            <div class="scale-item"><input type="radio" name="q11" value="4" id="q11_4"><label for="q11_4">4</label></div>
+                            <div class="scale-item"><input type="radio" name="q11" value="5" id="q11_5"><label for="q11_5">5</label></div>
                         </div>
-                        <div class="scale-labels">
-                            <span>Nada útil</span>
-                            <span>Muito útil</span>
+                        <div class="scale-labels"><span>Nada útil</span><span>Muito útil</span></div>
+                    </div>
+
+                    <div class="question">
+                        <h3><span class="question-number">12</span><span>Você usaria uma ferramenta assim regularmente?</span></h3>
+                        <div class="options">
+                            <label class="option"><input type="radio" name="q12" value="com_certeza"> Com certeza, todo dia</label>
+                            <label class="option"><input type="radio" name="q12" value="provavelmente"> Provavelmente sim</label>
+                            <label class="option"><input type="radio" name="q12" value="talvez"> Talvez, dependeria</label>
+                            <label class="option"><input type="radio" name="q12" value="provavelmente_nao"> Provavelmente não</label>
+                            <label class="option"><input type="radio" name="q12" value="nunca"> Nunca usaria</label>
                         </div>
                     </div>
 
                     <div class="question">
-                        <h3><span class="question-number">12</span>Você usaria uma ferramenta assim regularmente?</h3>
+                        <h3><span class="question-number">13</span><span>Qual seria sua maior preocupação com essa solução? (Marque todas que se aplicam)</span></h3>
                         <div class="options">
-                            <label class="option">
-                                <input type="radio" name="q12" value="com_certeza">
-                                Com certeza, todo dia
-                            </label>
-                            <label class="option">
-                                <input type="radio" name="q12" value="provavelmente">
-                                Provavelmente sim
-                            </label>
-                            <label class="option">
-                                <input type="radio" name="q12" value="talvez">
-                                Talvez, dependeria
-                            </label>
-                            <label class="option">
-                                <input type="radio" name="q12" value="provavelmente_nao">
-                                Provavelmente não
-                            </label>
-                            <label class="option">
-                                <input type="radio" name="q12" value="nunca">
-                                Nunca usaria
-                            </label>
+                            <label class="option"><input type="checkbox" name="q13" value="privacidade"> Privacidade/segurança dos dados</label>
+                            <label class="option"><input type="checkbox" name="q13" value="app_errar"> O aplicativo não entender/categorizar errado</label>
+                            <label class="option"><input type="checkbox" name="q13" value="custo"> Custo mensal</label>
+                            <label class="option"><input type="checkbox" name="q13" value="complexidade"> Ser muito complexo de usar</label>
+                            <label class="option"><input type="checkbox" name="q13" value="dependencia"> Dependência de internet/WhatsApp</label>
+                            <label class="option"><input type="checkbox" name="q13" value="nenhuma"> Nenhuma preocupação específica</label>
                         </div>
                     </div>
 
                     <div class="question">
-                        <h3><span class="question-number">13</span>Qual seria sua maior preocupação com essa solução?</h3>
+                        <h3><span class="question-number">14</span><span>Quanto você pagaria por mês por essa solução?</span></h3>
                         <div class="options">
-                            <label class="option">
-                                <input type="checkbox" name="q13" value="privacidade">
-                                Privacidade/segurança dos dados
-                            </label>
-                            <label class="option">
-                                <input type="checkbox" name="q13" value="app_errar">
-                                O aplicativo não entender/categorizar errado
-                            </label>
-                            <label class="option">
-                                <input type="checkbox" name="q13" value="custo">
-                                Custo mensal
-                            </label>
-                            <label class="option">
-                                <input type="checkbox" name="q13" value="complexidade">
-                                Ser muito complexo de usar
-                            </label>
-                            <label class="option">
-                                <input type="checkbox" name="q13" value="dependencia">
-                                Dependência de internet/WhatsApp
-                            </label>
-                            <label class="option">
-                                <input type="checkbox" name="q13" value="nenhuma">
-                                Nenhuma preocupação específica
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="question">
-                        <h3><span class="question-number">14</span>Quanto você pagaria por mês por essa solução?</h3>
-                        <div class="options">
-                            <label class="option">
-                                <input type="radio" name="q14" value="gratis">
-                                Só usaria se fosse grátis
-                            </label>
-                            <label class="option">
-                                <input type="radio" name="q14" value="ate20">
-                                Até R$ 20
-                            </label>
-                            <label class="option">
-                                <input type="radio" name="q14" value="20a50">
-                                R$ 20 a R$ 50
-                            </label>
-                            <label class="option">
-                                <input type="radio" name="q14" value="50a100">
-                                R$ 50 a R$ 100
-                            </label>
-                            <label class="option">
-                                <input type="radio" name="q14" value="mais100">
-                                Mais de R$ 100 (se realmente funcionasse)
-                            </label>
+                            <label class="option"><input type="radio" name="q14" value="gratis"> Só usaria se fosse grátis</label>
+                            <label class="option"><input type="radio" name="q14" value="ate20"> Até R$ 20</label>
+                            <label class="option"><input type="radio" name="q14" value="20a50"> R$ 20 a R$ 50</label>
+                            <label class="option"><input type="radio" name="q14" value="50a100"> R$ 50 a R$ 100</label>
+                            <label class="option"><input type="radio" name="q14" value="mais100"> Mais de R$ 100 (se realmente funcionasse)</label>
                         </div>
                     </div>
                 </div>
 
-                <!-- SEÇÃO 5: INSIGHTS ADICIONAIS -->
                 <div class="section priority-medium">
                     <h2>🔍 Descobrindo Mais Oportunidades</h2>
                     
                     <div class="question">
-                        <h3><span class="question-number">15</span>Que outras funcionalidades seriam importantes para você?</h3>
+                        <h3><span class="question-number">15</span><span>Que outras funcionalidades seriam importantes para você? (Marque todas que se aplicam)</span></h3>
                         <div class="options">
-                            <label class="option">
-                                <input type="checkbox" name="q15" value="alertas_ia">
-                                Alertas inteligentes ("Cuidado, você vai ficar sem dinheiro")
-                            </label>
-                            <label class="option">
-                                <input type="checkbox" name="q15" value="coaching">
-                                Dicas para economizar/ganhar mais
-                            </label>
-                            <label class="option">
-                                <input type="checkbox" name="q15" value="comparacao">
-                                Comparação com outros negócios similares
-                            </label>
-                            <label class="option">
-                                <input type="checkbox" name="q15" value="previsao">
-                                Previsão de faturamento futuro
-                            </label>
-                            <label class="option">
-                                <input type="checkbox" name="q15" value="fiscal">
-                                Ajuda com questões fiscais/impostos
-                            </label>
-                            <label class="option">
-                                <input type="checkbox" name="q15" value="familia">
-                                Permitir família/funcionários também mandarem áudios
-                            </label>
+                            <label class="option"><input type="checkbox" name="q15" value="alertas_ia"> Alertas inteligentes ("Cuidado, você vai ficar sem dinheiro")</label>
+                            <label class="option"><input type="checkbox" name="q15" value="coaching"> Dicas para economizar/ganhar mais</label>
+                            <label class="option"><input type="checkbox" name="q15" value="comparacao"> Comparação com outros negócios similares</label>
+                            <label class="option"><input type="checkbox" name="q15" value="previsao"> Previsão de faturamento futuro</label>
+                            <label class="option"><input type="checkbox" name="q15" value="fiscal"> Ajuda com questões fiscais/impostos</label>
+                            <label class="option"><input type="checkbox" name="q15" value="familia"> Permitir família/funcionários também mandarem áudios</label>
                         </div>
                     </div>
 
                     <div class="question">
-                        <h3><span class="question-number">16</span>Qual seria o momento ideal para você receber relatórios/alertas?</h3>
+                        <h3><span class="question-number">16</span><span>Qual seria o momento ideal para você receber relatórios/alertas?</span></h3>
                         <div class="options">
-                            <label class="option">
-                                <input type="radio" name="q16" value="manha">
-                                Manhã (planejamento do dia)
-                            </label>
-                            <label class="option">
-                                <input type="radio" name="q16" value="almoco">
-                                Meio-dia (pausa almoço)
-                            </label>
-                            <label class="option">
-                                <input type="radio" name="q16" value="tarde">
-                                Final da tarde
-                            </label>
-                            <label class="option">
-                                <input type="radio" name="q16" value="noite">
-                                Noite (balanço do dia)
-                            </label>
-                            <label class="option">
-                                <input type="radio" name="q16" value="weekend">
-                                Final de semana
-                            </label>
+                            <label class="option"><input type="radio" name="q16" value="manha"> Manhã (planejamento do dia)</label>
+                            <label class="option"><input type="radio" name="q16" value="almoco"> Meio-dia (pausa almoço)</label>
+                            <label class="option"><input type="radio" name="q16" value="tarde"> Final da tarde</label>
+                            <label class="option"><input type="radio" name="q16" value="noite"> Noite (balanço do dia)</label>
+                            <label class="option"><input type="radio" name="q16" value="weekend"> Final de semana</label>
                         </div>
                     </div>
 
                     <div class="question">
-                        <h3><span class="question-number">17</span>Se você pudesse ter UMA funcionalidade mágica para gestão financeira, qual seria?</h3>
+                        <h3><span class="question-number">17</span><span>Se você pudesse ter UMA funcionalidade mágica para gestão financeira, qual seria?</span></h3>
                         <textarea name="q17" placeholder="Seja criativo! Exemplo: 'Que a IA me avisasse antes de eu fazer uma compra ruim' ou 'Que calculasse automaticamente quanto posso me pagar de salário'"></textarea>
                     </div>
                 </div>
 
-                <!-- SEÇÃO 6: FINALIZAÇÃO -->
                 <div class="section priority-low">
                     <h2>🎯 Para Finalizar</h2>
                     
                     <div class="question">
-                        <h3><span class="question-number">18</span>Você participaria de um teste beta gratuito por 30 dias?</h3>
+                        <h3><span class="question-number">18</span><span>Você participaria de um teste beta gratuito por 30 dias?</span></h3>
                         <div class="options">
-                            <label class="option">
-                                <input type="radio" name="q18" value="sim_definitivo">
-                                Sim, com certeza!
-                            </label>
-                            <label class="option">
-                                <input type="radio" name="q18" value="sim_talvez">
-                                Sim, dependendo de quando
-                            </label>
-                            <label class="option">
-                                <input type="radio" name="q18" value="nao_tempo">
-                                Não, não tenho tempo
-                            </label>
-                            <label class="option">
-                                <input type="radio" name="q18" value="nao_interesse">
-                                Não, não me interessa
-                            </label>
+                            <label class="option"><input type="radio" name="q18" value="sim_definitivo"> Sim, com certeza!</label>
+                            <label class="option"><input type="radio" name="q18" value="sim_talvez"> Sim, dependendo de quando</label>
+                            <label class="option"><input type="radio" name="q18" value="nao_tempo"> Não, não tenho tempo</label>
+                            <label class="option"><input type="radio" name="q18" value="nao_interesse"> Não, não me interessa</label>
                         </div>
                     </div>
 
                     <div class="question">
-                        <h3><span class="question-number">19</span>Deixe seu WhatsApp se quiser participar do beta ou receber updates:</h3>
-                        <input type="text" name="q19" placeholder="(11) 99999-9999 - Opcional">
+                        <h3><span class="question-number">19</span><span>Deixe seu WhatsApp se quiser participar do beta ou receber updates:</span></h3>
+                        <input type="tel" name="q19" placeholder="(11) 99999-9999 - Opcional">
                     </div>
 
                     <div class="question">
-                        <h3><span class="question-number">20</span>Algum comentário adicional ou sugestão?</h3>
+                        <h3><span class="question-number">20</span><span>Algum comentário adicional ou sugestão?</span></h3>
                         <textarea name="q20" placeholder="Qualquer coisa que possa ajudar a melhorar a ideia..."></textarea>
                     </div>
                 </div>
@@ -787,71 +650,198 @@
                 <div class="submit-section">
                     <h3>Obrigado por participar! 🙏</h3>
                     <p>Suas respostas vão ajudar a criar uma ferramenta que realmente resolva os problemas dos MEIs brasileiros.</p>
-                    <button type="submit" class="submit-btn">Enviar Respostas</button>
+                    <button type="submit" class="submit-btn" id="submitButton">Enviar Respostas</button>
                 </div>
             </form>
         </div>
     </div>
 
+    <div id="feedbackModal" class="feedback-modal">
+        <div class="feedback-modal-content">
+            <p id="feedbackModalMessage"></p>
+            <button id="feedbackModalCloseButton">Fechar</button>
+        </div>
+    </div>
+
     <script>
-        const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbyWe9U91ANsZiT-6YPdEo-zvbsji5z_J9KWIo-tLvo-SRmOSc5oh0TYAgYa0SVPsZZohQ/exec';
+        const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbyWe9U91ANsZiT-6YPdEo-zvbsji5z_J9KWIo-tLvo-SRmOSc5oh0TYAgYa0SVPsZZohQ/exec'; // CONFIRME SE ESTA É A URL CORRETA DA SUA IMPLANTAÇÃO MAIS RECENTE
+        const researchForm = document.getElementById('meiResearchForm');
+        const submitButton = document.getElementById('submitButton');
         
-        document.getElementById('meiResearchForm').addEventListener('submit', function(e) {
+        // Modal elements
+        const feedbackModal = document.getElementById('feedbackModal');
+        const feedbackModalMessage = document.getElementById('feedbackModalMessage');
+        const feedbackModalCloseButton = document.getElementById('feedbackModalCloseButton');
+
+        feedbackModalCloseButton.addEventListener('click', () => {
+            feedbackModal.style.display = 'none';
+        });
+        // Close modal if user clicks outside of it
+        window.addEventListener('click', (event) => {
+            if (event.target == feedbackModal) {
+                feedbackModal.style.display = 'none';
+            }
+        });
+
+
+        function showModal(message, isSuccess = true) {
+            feedbackModalMessage.textContent = message;
+            // Optional: Change modal style based on success/error
+            // feedbackModalContent.style.borderColor = isSuccess ? 'green' : 'red';
+            feedbackModal.style.display = 'flex'; // Use flex to center
+        }
+
+        researchForm.addEventListener('submit', function(e) {
             e.preventDefault();
+            submitButton.disabled = true;
+            submitButton.textContent = 'Enviando...';
             
-            // Coleta todas as respostas
             const formData = new FormData(this);
             const responses = {};
             
+            // Handle Q1 "Outros" specifically
+            const q1OutrosRadio = document.getElementById('q1_outros_radio');
+            const q1OutrosText = document.getElementById('q1_outros_text').value.trim();
+
             for (let [key, value] of formData.entries()) {
+                let processedValue = value;
+                if (key === 'q1' && value === 'outros' && q1OutrosRadio.checked) {
+                    processedValue = q1OutrosText ? `Outros: ${q1OutrosText}` : 'Outros (não especificado)';
+                }
+                
+                // Skip the separate q1_outros_text field as it's now combined
+                if (key === 'q1_outros_text') continue;
+
                 if (responses[key]) {
                     if (Array.isArray(responses[key])) {
-                        responses[key].push(value);
+                        responses[key].push(processedValue);
                     } else {
-                        responses[key] = [responses[key], value];
+                        responses[key] = [responses[key], processedValue];
                     }
                 } else {
-                    responses[key] = value;
+                    responses[key] = processedValue;
                 }
             }
             
-            // Adiciona timestamp
-            responses.timestamp = new Date().toLocaleString('pt-BR');
+            responses.timestamp = new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' });
             
-            // Enviar para Google Sheets
             fetch(GOOGLE_SHEETS_URL, {
                 method: 'POST',
-                mode: 'no-cors',
                 headers: {
-                    'Content-Type': 'application/json',
+                    // 'Content-Type': 'application/json', // Not strictly needed if Apps Script parses e.postData.contents
+                                                         // but good practice to keep.
+                                                         // However, for Apps Script web apps, sometimes it's better to send as text/plain
+                                                         // and parse on the server, or let it default.
+                                                         // Let's try sending as JSON string directly.
                 },
-                body: JSON.stringify(responses)
+                body: JSON.stringify(responses) // Apps Script will receive this in e.postData.contents
             })
-            .then(() => {
-                alert('✅ Respostas enviadas com sucesso! Obrigado por participar da pesquisa.');
-                this.reset();
+            .then(response => {
+                if (!response.ok) {
+                    // Try to get more details from the response if not OK
+                    return response.text().then(text => {
+                        throw new Error(`Erro do Servidor: ${response.status} ${response.statusText} - ${text}`);
+                    });
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data && data.result === 'success') {
+                    showModal('✅ Respostas enviadas com sucesso! Obrigado por participar da pesquisa.');
+                    this.reset(); // Resets the form
+                    // Clear localStorage for this form
+                    const formElements = Array.from(this.elements);
+                    formElements.forEach(input => {
+                        if (input.name) {
+                             const storageKeyBase = 'pesquisa_mei_' + input.name;
+                             if (input.type === 'radio') { // For radio, the value is part of the key or a general key for the group
+                                 localStorage.removeItem(storageKeyBase); // Remove the group key
+                             } else if (input.type === 'checkbox') {
+                                 localStorage.removeItem(storageKeyBase + '_' + input.value); // Remove specific checkbox key
+                             } else {
+                                 localStorage.removeItem(storageKeyBase); // Remove general input key
+                             }
+                        }
+                    });
+
+                } else {
+                    console.error('Erro retornado pelo script:', data ? data.error : 'Resposta inválida do servidor.');
+                    showModal(`❌ Erro no envio: ${data && data.error ? data.error : 'Resposta inválida do servidor.'}. Verifique o console.`, false);
+                }
             })
             .catch(error => {
-                console.error('Erro:', error);
-                alert('❌ Erro no envio. Tente novamente.');
+                console.error('Erro no fetch:', error);
+                showModal(`❌ Erro crítico no envio: ${error.message}. Verifique o console para detalhes e se o Google Apps Script está configurado corretamente (CORS, implantação).`, false);
+            })
+            .finally(() => {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Enviar Respostas';
             });
         });
         
-        // Salva progresso localmente (para não perder se fechar a página)
-        const inputs = document.querySelectorAll('input, textarea, select');
-        inputs.forEach(input => {
-            input.addEventListener('change', function() {
-                localStorage.setItem('pesquisa_mei_' + this.name, this.value);
+        // --- Local Storage Persistence ---
+        const formElements = Array.from(researchForm.elements).filter(el => el.name);
+
+        function loadFormFromLocalStorage() {
+            formElements.forEach(input => {
+                const baseKey = 'pesquisa_mei_' + input.name;
+                let storageKey = baseKey;
+
+                if (input.type === 'radio') {
+                    const savedValue = localStorage.getItem(baseKey); // Radio group saved under its name
+                    if (savedValue && input.value === savedValue) {
+                        input.checked = true;
+                    }
+                } else if (input.type === 'checkbox') {
+                    storageKey = baseKey + '_' + input.value; // Checkboxes saved with their value in key
+                    const savedValue = localStorage.getItem(storageKey);
+                    if (savedValue === 'true') {
+                        input.checked = true;
+                    }
+                } else { // text, textarea, etc.
+                    const savedValue = localStorage.getItem(storageKey);
+                    if (savedValue !== null) {
+                        input.value = savedValue;
+                    }
+                }
             });
-            
-            // Restaura valores salvos
-            const savedValue = localStorage.getItem('pesquisa_mei_' + input.name);
-            if (savedValue && input.type !== 'radio') {
-                input.value = savedValue;
-            } else if (savedValue && input.type === 'radio' && input.value === savedValue) {
-                input.checked = true;
+        }
+
+        function saveFormToLocalStorage(inputChanged) {
+            const baseKey = 'pesquisa_mei_' + inputChanged.name;
+            let storageKey = baseKey;
+
+            if (inputChanged.type === 'radio') {
+                if (inputChanged.checked) {
+                    localStorage.setItem(baseKey, inputChanged.value); // Save selected radio value for the group
+                }
+            } else if (inputChanged.type === 'checkbox') {
+                storageKey = baseKey + '_' + inputChanged.value;
+                if (inputChanged.checked) {
+                    localStorage.setItem(storageKey, 'true');
+                } else {
+                    localStorage.removeItem(storageKey);
+                }
+            } else { // text, textarea, etc.
+                 if (inputChanged.value) {
+                    localStorage.setItem(storageKey, inputChanged.value);
+                } else {
+                    localStorage.removeItem(storageKey); // Remove if empty to keep localStorage clean
+                }
+            }
+        }
+
+        formElements.forEach(input => {
+            input.addEventListener('change', (e) => saveFormToLocalStorage(e.target));
+            // For text inputs, 'input' event gives more immediate feedback if needed
+            if (input.type === 'text' || input.tagName.toLowerCase() === 'textarea') {
+                 input.addEventListener('input', (e) => saveFormToLocalStorage(e.target));
             }
         });
+        
+        // Load saved data when the page loads
+        loadFormToLocalStorage();
+
     </script>
 </body>
 </html>
