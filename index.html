@@ -364,6 +364,9 @@
             background-color: rgba(0,0,0,0.5); /* Dim background */
             justify-content: center;
             align-items: center;
+            display: none; /* Make sure it's hidden initially */
+            justify-content: center;
+            align-items: center;
         }
         .feedback-modal-content {
             background-color: #fff;
@@ -664,7 +667,7 @@
     </div>
 
     <script>
-        const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbyWe9U91ANsZiT-6YPdEo-zvbsji5z_J9KWIo-tLvo-SRmOSc5oh0TYAgYa0SVPsZZohQ/exec'; // CONFIRME SE ESTA É A URL CORRETA DA SUA IMPLANTAÇÃO MAIS RECENTE
+        const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbxKo5fLyix48dhkYwclDKalJR8Vd6-8FNqcs3czwpnmlISIHyE-lBhegSjKh5_HZzpOCQ/exec'; // COLOQUE AQUI A SUA URL MAIS RECENTE!
         const researchForm = document.getElementById('meiResearchForm');
         const submitButton = document.getElementById('submitButton');
         
@@ -686,8 +689,6 @@
 
         function showModal(message, isSuccess = true) {
             feedbackModalMessage.textContent = message;
-            // Optional: Change modal style based on success/error
-            // feedbackModalContent.style.borderColor = isSuccess ? 'green' : 'red';
             feedbackModal.style.display = 'flex'; // Use flex to center
         }
 
@@ -699,7 +700,6 @@
             const formData = new FormData(this);
             const responses = {};
             
-            // Handle Q1 "Outros" specifically
             const q1OutrosRadio = document.getElementById('q1_outros_radio');
             const q1OutrosText = document.getElementById('q1_outros_text').value.trim();
 
@@ -708,8 +708,6 @@
                 if (key === 'q1' && value === 'outros' && q1OutrosRadio.checked) {
                     processedValue = q1OutrosText ? `Outros: ${q1OutrosText}` : 'Outros (não especificado)';
                 }
-                
-                // Skip the separate q1_outros_text field as it's now combined
                 if (key === 'q1_outros_text') continue;
 
                 if (responses[key]) {
@@ -725,22 +723,14 @@
             
             responses.timestamp = new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' });
             
-            fetch(https://script.google.com/macros/s/AKfycbxKo5fLyix48dhkYwclDKalJR8Vd6-8FNqcs3czwpnmlISIHyE-lBhegSjKh5_HZzpOCQ/exec, {
+            fetch(https://script.google.com/macros/s/AKfycbyOVT4idzFcvGlFpPVGtTAhHK0ApdvPEkKZTi7QQHCrdKwNQ2Fdxu9p7KJ7vSL3RzcDBQ/exec, {
                 method: 'POST',
-                headers: {
-                    // 'Content-Type': 'application/json', // Not strictly needed if Apps Script parses e.postData.contents
-                                                         // but good practice to keep.
-                                                         // However, for Apps Script web apps, sometimes it's better to send as text/plain
-                                                         // and parse on the server, or let it default.
-                                                         // Let's try sending as JSON string directly.
-                },
-                body: JSON.stringify(responses) // Apps Script will receive this in e.postData.contents
+                body: JSON.stringify(responses) 
             })
             .then(response => {
                 if (!response.ok) {
-                    // Try to get more details from the response if not OK
                     return response.text().then(text => {
-                        throw new Error(`Erro do Servidor: ${response.status} ${response.statusText} - ${text}`);
+                         throw new Error(`Erro do Servidor: ${response.status} ${response.statusText} - ${text || 'Sem detalhes'}`);
                     });
                 }
                 return response.json();
@@ -748,19 +738,13 @@
             .then(data => {
                 if (data && data.result === 'success') {
                     showModal('✅ Respostas enviadas com sucesso! Obrigado por participar da pesquisa.');
-                    this.reset(); // Resets the form
-                    // Clear localStorage for this form
+                    this.reset();
                     const formElements = Array.from(this.elements);
                     formElements.forEach(input => {
                         if (input.name) {
                              const storageKeyBase = 'pesquisa_mei_' + input.name;
-                             if (input.type === 'radio') { // For radio, the value is part of the key or a general key for the group
-                                 localStorage.removeItem(storageKeyBase); // Remove the group key
-                             } else if (input.type === 'checkbox') {
-                                 localStorage.removeItem(storageKeyBase + '_' + input.value); // Remove specific checkbox key
-                             } else {
-                                 localStorage.removeItem(storageKeyBase); // Remove general input key
-                             }
+                             localStorage.removeItem(storageKeyBase); // Simple clear for now
+                             localStorage.removeItem(storageKeyBase + '_' + input.value);
                         }
                     });
 
@@ -771,7 +755,14 @@
             })
             .catch(error => {
                 console.error('Erro no fetch:', error);
-                showModal(`❌ Erro crítico no envio: ${error.message}. Verifique o console para detalhes e se o Google Apps Script está configurado corretamente (CORS, implantação).`, false);
+                // Modified to provide more specific advice on 401
+                let userMessage = `❌ Erro crítico no envio: ${error.message}.`;
+                if (error.message.includes('401')) {
+                   userMessage += " O erro 401 (Unauthorized) geralmente significa que a implantação do Apps Script não está configurada para 'Qualquer pessoa'. Por favor, verifique novamente a implantação.";
+                } else {
+                   userMessage += " Verifique o console para detalhes e se o Google Apps Script está configurado corretamente (CORS, implantação).";
+                }
+                showModal(userMessage, false);
             })
             .finally(() => {
                 submitButton.disabled = false;
@@ -782,23 +773,23 @@
         // --- Local Storage Persistence ---
         const formElements = Array.from(researchForm.elements).filter(el => el.name);
 
-        function loadFormFromLocalStorage() {
+        function loadFormFromLocalStorage() { // NOME CORRIGIDO AQUI
             formElements.forEach(input => {
                 const baseKey = 'pesquisa_mei_' + input.name;
                 let storageKey = baseKey;
 
                 if (input.type === 'radio') {
-                    const savedValue = localStorage.getItem(baseKey); // Radio group saved under its name
+                    const savedValue = localStorage.getItem(baseKey); 
                     if (savedValue && input.value === savedValue) {
                         input.checked = true;
                     }
                 } else if (input.type === 'checkbox') {
-                    storageKey = baseKey + '_' + input.value; // Checkboxes saved with their value in key
+                    storageKey = baseKey + '_' + input.value; 
                     const savedValue = localStorage.getItem(storageKey);
                     if (savedValue === 'true') {
                         input.checked = true;
                     }
-                } else { // text, textarea, etc.
+                } else { 
                     const savedValue = localStorage.getItem(storageKey);
                     if (savedValue !== null) {
                         input.value = savedValue;
@@ -813,7 +804,7 @@
 
             if (inputChanged.type === 'radio') {
                 if (inputChanged.checked) {
-                    localStorage.setItem(baseKey, inputChanged.value); // Save selected radio value for the group
+                    localStorage.setItem(baseKey, inputChanged.value); 
                 }
             } else if (inputChanged.type === 'checkbox') {
                 storageKey = baseKey + '_' + inputChanged.value;
@@ -822,25 +813,24 @@
                 } else {
                     localStorage.removeItem(storageKey);
                 }
-            } else { // text, textarea, etc.
+            } else { 
                  if (inputChanged.value) {
                     localStorage.setItem(storageKey, inputChanged.value);
                 } else {
-                    localStorage.removeItem(storageKey); // Remove if empty to keep localStorage clean
+                    localStorage.removeItem(storageKey); 
                 }
             }
         }
 
         formElements.forEach(input => {
             input.addEventListener('change', (e) => saveFormToLocalStorage(e.target));
-            // For text inputs, 'input' event gives more immediate feedback if needed
-            if (input.type === 'text' || input.tagName.toLowerCase() === 'textarea') {
+            if (input.type === 'text' || input.tagName.toLowerCase() === 'textarea' || input.type === 'tel') {
                  input.addEventListener('input', (e) => saveFormToLocalStorage(e.target));
             }
         });
         
         // Load saved data when the page loads
-        loadFormToLocalStorage();
+        loadFormFromLocalStorage(); // CHAMADA CORRIGIDA AQUI
 
     </script>
 </body>
