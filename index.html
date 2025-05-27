@@ -857,9 +857,9 @@
             });
             */
             
-            // ENVIAR PARA GOOGLE SHEETS (descomente se usar)
-            /*
-            fetch(GOOGLE_SHEETS_URL, {
+            ENVIAR PARA GOOGLE SHEETS (descomente se usar)
+            
+            fetch(https://script.google.com/macros/s/AKfycbx8jHAwaT4_-1j3_9Hcak72qpiOOd4zGMnDR39_E5cOWs6hYhD0FUIAXVk2T4rWi1bb9w/exec, {
                 method: 'POST',
                 mode: 'no-cors',
                 headers: {
@@ -875,9 +875,9 @@
                 console.error('Erro:', error);
                 alert('❌ Erro no envio. Tente novamente.');
             });
-            */
             
-            // MODO DEMO (remova quando conectar com serviço real)
+            
+            //* MODO DEMO (remova quando conectar com serviço real)
             console.log('Respostas coletadas:', responses);
             alert('📊 MODO DEMO: Respostas coletadas! (Veja no console do navegador)\n\nPara usar de verdade, configure um dos serviços mencionados.');
             
@@ -901,7 +901,7 @@
                     alert('🧠 Insights iniciais:\n\n' + insights.join('\n'));
                 }, 1000);
             }
-        });
+        }); */
         
         // Salva progresso localmente (para não perder se fechar a página)
         const inputs = document.querySelectorAll('input, textarea, select');
